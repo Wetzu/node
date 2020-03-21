@@ -90,6 +90,7 @@ function processAccess(req, res){
         var notes = result[0].notes;
         if(notes === "INITIAL"){
           notes = "";
+          cmgNo = "";
         }
         res.render('pages/form', {
           name: name,
