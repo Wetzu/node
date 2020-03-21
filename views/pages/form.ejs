@@ -15,16 +15,16 @@
                         <label for="comingYes">Ja</label>
                         <input type="text" id="name" name="name" value="<%= name%>" style="display: none"/>
                         <input type="number" style="display: none" id="inviteCode" name="invitationCode" value="<%= code%>">
-                        <input type="radio" id="comingYes" name="participation" value="true" required>
+                        <input type="radio" id="comingYes" name="participation" value="true" required <%= comingYes %>>
                         <label for="comingNo">Nein</label>
-                        <input type="radio" id="comingNo" name="participation" value="false"><br/>
+                        <input type="radio" id="comingNo" name="participation" value="false" <%= comingNo %>><br/>
                         Mit welcher Personenzahl nehmt ihr teil? <br/>
-                        <input type="number" name="numberOfPersons" value="0" required><br/>
+                        <input type="number" name="numberOfPersons" value="<%= persons %>" required><br/>
                         Davon sind wie viele Vegetarier?<br/>
-                        <input type="number" name="numberOfVegetarians" value="0"><br/>
+                        <input type="number" name="numberOfVegetarians" value="<%= vegetarians %>"><br/>
                         
                         Anmerkungen:<br/>
-                        <input type="text" name="notes"/><br/>
+                        <input type="text" name="notes" value="<%= notes %>"/><br/>
                         <input type="submit" style="margin-top: 10px; z-index: 10;">
                     </p>
             </form>

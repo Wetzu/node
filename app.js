@@ -24,7 +24,6 @@ app.post('/submit', processSubmit);
 function processSubmit(req, res){
   var con = mysql.createConnection({
     host: 'localhost',
-    port: 3000,
     user: 'wtk25',
     password: '9A_ns55g',
     database: "wtk25"
@@ -67,7 +66,6 @@ function processSubmit(req, res){
 function processAccess(req, res){
   var con = mysql.createConnection({
     host: 'localhost',
-    port: 3000,
     user: 'wtk25',
     password: '9A_ns55g',
     database: "wtk25"
@@ -78,11 +76,29 @@ function processAccess(req, res){
   con.connect(function(err){
     if(err) throw err;
     var sql = "SELECT * FROM jubabend WHERE inviteCode = " + code + ";";
-    con.query(sql, function(err, result){
+    con.query(sql, function(err, result, fields){
+      if(err) throw err;
       if(result[0] != null){
+        var cmgYes = "";
+        var cmgNo = "";
+        if(result[0].coming){
+          cmgNo = "Checked";
+        }
+        else{
+          cmgYes = "Checked";
+        }
+        var notes = result[0].notes;
+        if(notes === "INITIAL"){
+          notes = "";
+        }
         res.render('pages/form', {
           name: name,
           code: code,
+          comingYes: cmgYes,
+          comingNo: cmgNo,
+          persons: result[0].persons,
+          vegetarians: result[0].vegetarians,
+          notes: notes,
           title: 'WTK Jubiläum'
         });
         console.log("Access granted!");
